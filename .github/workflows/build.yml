@@ -1,8 +1,6 @@
 name: Build Binary
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -11,16 +9,15 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  call-build:
     
     strategy:
       fail-fast: false
       matrix:
         platform:
           # Raspberry Pi OS 64 bit
-          - release_for: aarch64-unknown-linux-gnu
+          - target: aarch64-unknown-linux-gnu
             os: ubuntu-latest
-            target: aarch64-unknown-linux-gnu
             bin: get-LAN-IP-telegram-bot-rs
             command: build
 
@@ -29,19 +26,13 @@ jobs:
     name: ${{ matrix.platform.target }}
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      uses: houseabsolute/actions-rust-cross@v0
+    - name: Call build action
+      uses: ./.github/workflows/build-action.yml
       with:
-          command: ${{ matrix.platform.command }}
-          target: ${{ matrix.platform.target }}
-          args: "--locked --release"
-          strip: true
-    - uses: actions/upload-artifact@v4
-      with:
-        # Name of the artifact to upload.
-        # Optional. Default is 'artifact'
-        name: get-LAN-IP-telegram-bot-rs_${{ matrix.platform.target }}
-    
-        # A file, directory or wildcard pattern that describes what to upload
-        # Required.
-        path: target/${{ matrix.platform.target }}/release/${{ matrix.platform.bin }}
+        version: ${{ github.ref_name }}
+        os: ${{ matrix.platform.os }}
+        command: ${{ matrix.platform.command }}
+        bin: ${{ matrix.platform.bin }}
+        target: ${{ matrix.platform.target }}
+        args: "--locked --release"
+        strip: true
