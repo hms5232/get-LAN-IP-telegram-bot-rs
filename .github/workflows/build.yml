@@ -9,8 +9,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  call-build:
-    
+  build:
     strategy:
       fail-fast: false
       matrix:
@@ -20,19 +19,12 @@ jobs:
             os: ubuntu-latest
             bin: get-LAN-IP-telegram-bot-rs
             command: build
-
-    runs-on: ${{ matrix.platform.os }}
-
-    name: ${{ matrix.platform.target }}
-    steps:
-    - uses: actions/checkout@v4
-    - name: Call build action
-      uses: ./.github/workflows/build-action.yml
-      with:
-        version: ${{ github.ref_name }}
-        os: ${{ matrix.platform.os }}
-        command: ${{ matrix.platform.command }}
-        bin: ${{ matrix.platform.bin }}
-        target: ${{ matrix.platform.target }}
-        args: "--locked --release"
-        strip: true
+    uses: ./.github/workflows/reusable/build.yml
+    with:
+      version: ${{ github.sha }}
+      os: ${{ matrix.platform.os }}
+      command: ${{ matrix.platform.command }}
+      bin: ${{ matrix.platform.bin }}
+      target: ${{ matrix.platform.target }}
+      args: "--locked --release"
+      strip: true
