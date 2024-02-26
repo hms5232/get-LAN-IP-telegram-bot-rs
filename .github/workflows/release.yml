@@ -19,7 +19,7 @@ jobs:
             os: ubuntu-latest
             bin: get-LAN-IP-telegram-bot-rs
             command: build
-    uses: ./.github/workflows/reusable/build.yml
+    uses: ./.github/workflows/build.yml
     with:
       version: ${{ github.ref_name }}
       os: ${{ matrix.platform.os }}
