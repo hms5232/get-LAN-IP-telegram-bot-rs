@@ -31,6 +31,8 @@ jobs:
       strip: true
 
   upload:
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
