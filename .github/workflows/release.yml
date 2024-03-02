@@ -56,6 +56,8 @@ jobs:
           name: ${{ matrix.platform.bin }}_${{ github.ref_name }}_${{ matrix.platform.target }}
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Rename binary
+        run: mv ${{ matrix.platform.bin }} ${{ matrix.platform.bin }}_${{ github.ref_name }}_${{ matrix.platform.target }}
       - name: Upload binary
         uses: softprops/action-gh-release@v1
         with:
