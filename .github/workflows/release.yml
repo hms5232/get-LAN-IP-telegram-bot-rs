@@ -19,7 +19,7 @@ jobs:
             os: ubuntu-latest
             bin: get-LAN-IP-telegram-bot-rs
             command: build
-    name: ${{ matrix.platform.target }}
+    name: Build/${{ matrix.platform.target }}
     uses: ./.github/workflows/build.yml
     with:
       version: ${{ github.ref_name }}
@@ -44,7 +44,7 @@ jobs:
 
     runs-on: ${{ matrix.platform.os }}
 
-    name: ${{ matrix.platform.target }}
+    name: Upload/${{ matrix.platform.target }}
     needs:
       - build
     steps:
