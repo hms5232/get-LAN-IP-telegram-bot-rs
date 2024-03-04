@@ -36,17 +36,17 @@ then replace value for your bot and chat/user id.
 
 ### Run on RPi
 
+First, build binary or download pre-built binary from [release page](https://github.com/hms5232/get-LAN-IP-telegram-bot-rs/releases).
+
+Optional, you can rename it to `get-LAN-IP-telegram-bot-rs` or other filename you like.
+
 Add the following line into `/etc/rc.local`:
 
 ```shell
 (cd /path/to/binary && ./get-LAN-IP-telegram-bot-rs; cd -)&
 ```
 
-for example:
-
-```shell
-(cd /home/pi/Documents/get-LAN-IP-telegram-bot-rs && ./target/release/get-LAN-IP-telegram-bot-rs; cd -)&
-```
+Don't forget that replace `get-LAN-IP-telegram-bot-rs` with you just named to binary
 
 ## LICENSE
 
