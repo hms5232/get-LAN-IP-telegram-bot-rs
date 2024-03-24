@@ -46,7 +46,7 @@ fn main() {
                         sleep(Duration::from_secs(1));
                     }
                 }
-                _ => println!("Unknown or supported args"),
+                _ => println!("Unknown or unsupported args"),
             }
         }
     }
