@@ -40,6 +40,11 @@ fn main() {
             match arg_str {
                 // --polling => polling mod
                 "--polling" => {
+                    ctrlc::set_handler(move || {
+                        println!("Stop bot polling mode");
+                        std::process::exit(0);
+                    }).expect("Error setting Ctrl-C handler");
+
                     let mut update_id = 0;
                     loop {
                         update_id = polling(update_id);
