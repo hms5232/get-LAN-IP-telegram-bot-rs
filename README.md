@@ -24,6 +24,12 @@ export TOKEN='bot token'
 export NOTIFY_USER_ID='chat id'
 ```
 
+or
+
+```shell
+TOKEN='bot token' NOTIFY_USER_ID='chat id' /path/to/binary
+```
+
 #### dotenv
 
 ```shell
@@ -44,6 +50,12 @@ Add the following line into `/etc/rc.local`:
 
 ```shell
 (cd /path/to/binary && ./get-LAN-IP-telegram-bot-rs; cd -)&
+```
+
+or
+
+```shell
+(cd /path/to/binary && TOKEN='bot token' NOTIFY_USER_ID='chat id' ./get-LAN-IP-telegram-bot-rs; cd -)&
 ```
 
 Don't forget that replace `get-LAN-IP-telegram-bot-rs` with you just named to binary
