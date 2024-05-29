@@ -55,7 +55,7 @@ Add the following line into `/etc/rc.local`:
 or
 
 ```shell
-(cd /path/to/binary && TOKEN='bot token' NOTIFY_USER_ID='chat id' ./get-LAN-IP-telegram-bot-rs; cd -)&
+(TOKEN='bot token' NOTIFY_USER_ID='chat id' /path/to/get-LAN-IP-telegram-bot-rs/binary)&
 ```
 
 Don't forget that replace `get-LAN-IP-telegram-bot-rs` with you just named to binary
