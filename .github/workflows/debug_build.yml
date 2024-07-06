@@ -19,6 +19,10 @@ jobs:
             os: ubuntu-latest
             bin: get-LAN-IP-telegram-bot-rs
             command: build
+          - target: armv7-unknown-linux-gnueabihf
+            os: ubuntu-latest
+            bin: get-LAN-IP-telegram-bot-rs
+            command: build
     name: ${{ matrix.platform.target }}
     uses: ./.github/workflows/build.yml
     with:
