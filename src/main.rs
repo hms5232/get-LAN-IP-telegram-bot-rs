@@ -5,6 +5,8 @@ use frankenstein::{Api, SendMessageParams, TelegramApi};
 use lazy_static::lazy_static;
 use local_ip_address::local_ip;
 use std::env;
+use std::thread::sleep;
+use std::time::Duration;
 
 lazy_static! {
     static ref NOTIFY_USER_ID: i64 = {
@@ -57,7 +59,15 @@ fn send_ip() {
         .text(get_ip())
         .build();
     // send
-    Api::new(*TOKEN).send_message(&message).unwrap();
+    match Api::new(*TOKEN).send_message(&message) {
+        Ok(_) => (),
+        Err(e) => {
+            eprintln!("Failed to send message: {e:?}");
+            // retry after
+            sleep(Duration::from_secs(3));
+            send_ip()
+        }
+    }
 }
 
 #[cfg(test)]
