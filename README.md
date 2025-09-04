@@ -1,4 +1,7 @@
 # get-LAN-IP-telegram-bot-rs
+
+Get the LAN IP and send it to you via Telegram bot.
+
 The Rust version of [get-LAN-IP-telegram-bot](https://github.com/hms5232/get-LAN-IP-telegram-bot).
 
 ## Background
