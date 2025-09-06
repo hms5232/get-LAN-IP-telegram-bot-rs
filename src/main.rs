@@ -7,6 +7,7 @@ use local_ip_address::local_ip;
 use std::env;
 use std::thread::sleep;
 use std::time::Duration;
+use time::{format_description, OffsetDateTime};
 
 lazy_static! {
     static ref NOTIFY_USER_ID: i64 = {
@@ -62,7 +63,16 @@ fn send_ip() {
     match Api::new(*TOKEN).send_message(&message) {
         Ok(_) => (),
         Err(e) => {
-            eprintln!("Failed to send message: {e:?}");
+            eprintln!(
+                "[{}] Failed to send IP: {e:?}",
+                OffsetDateTime::now_local()
+                    .unwrap()
+                    .format(
+                        &format_description::parse("[year]-[month]-[day] [hour]:[minute]:[second]")
+                            .unwrap()
+                    )
+                    .unwrap()
+            );
             // retry after
             sleep(Duration::from_secs(3));
             send_ip()
