@@ -145,7 +145,7 @@ dependencies = [
 
 [[package]]
 name = "get-LAN-IP-telegram-bot-rs"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "ctrlc",
  "dotenvy",
