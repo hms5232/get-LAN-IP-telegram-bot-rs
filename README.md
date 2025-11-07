@@ -63,6 +63,22 @@ or
 
 Don't forget that replace `get-LAN-IP-telegram-bot-rs` with you just named to binary
 
+### polling
+
+If you don't know your chat id, this tool provide polling mode:
+
+```shell
+TOKEN='bot token' /path/to/get-LAN-IP-telegram-bot-rs/binary --polling
+```
+
+or use `.env` file to set `TOKEN`.
+
+After `TOKEN` is set, go to Telegram and send a message to your bot,
+it will reply the message you just send and that contains current chat id of chat.
+
+Now you have a bot and chat id where you want to receive the notification.
+Deploy this project to your target device and enjoy it.
+
 ## LICENSE
 
 [MPL 2.0](LICENSE)
